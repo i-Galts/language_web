@@ -16,10 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from ImLearnEng.views import index, words_list
+from ImLearnEng.views import index, info_page, grammar_page, \
+                             vocabulary_page, tests_page, add_words_dict
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index),
-    path('words-list', words_list)
+    path('info-page', info_page),
+    path('grammar-page', grammar_page),
+    path('vocabulary-page', vocabulary_page),
+    path('tests-page', tests_page),
+    path('add-words-dict', add_words_dict)
 ]

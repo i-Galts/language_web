@@ -7,6 +7,17 @@ from ImLearnEng import words_work
 def index(request):
     return render(request, "index.html")
 
-def words_list(request):
-    words = words_work.get_words_for_table()
-    return render(request, "words_list.html", context={"words": words})
+def info_page(request):
+    return render(request, "info_page.html")
+
+def grammar_page(request):
+    return render(request, "grammar_page.html")
+
+def vocabulary_page(request):
+    return render(request, "vocabulary_page.html")
+
+def tests_page(request):
+    return render(request, "tests_page.html")
+
+def add_words_dict(request):
+    return render(request, "add_words_dict.html")
