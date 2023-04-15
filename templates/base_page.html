@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block pagetitle %}{% endblock %}</title>
+    <!-- load static -->
+    {% load static %}
+    <!-- CSS -->
+    <link href="{% static 'bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <!-- Favicons -->
+    <link rel="icon" href="/static/guitar.svg" sizes="180x180">
+
+    <style>
+        .bd-placeholder-img {
+          font-size: 1.125rem;
+          text-anchor: middle;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          user-select: none;
+        }
+  
+        @media (min-width: 768px) {
+          .bd-placeholder-img-lg {
+            font-size: 3.5rem;
+          }
+        }
+  
+        .b-example-divider {
+          width: 100%;
+          height: 3rem;
+          background-color: rgba(0, 0, 0, .1);
+          border: solid rgba(0, 0, 0, .15);
+          border-width: 1px 0;
+          box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+        }
+  
+        .b-example-vr {
+          flex-shrink: 0;
+          width: 1.5rem;
+          height: 100vh;
+        }
+  
+        .bi {
+          vertical-align: -.125em;
+          fill: currentColor;
+        }
+  
+        .nav-scroller {
+          position: relative;
+          z-index: 2;
+          height: 2.75rem;
+          overflow-y: hidden;
+        }
+  
+        .nav-scroller .nav {
+          display: flex;
+          flex-wrap: nowrap;
+          padding-bottom: 1rem;
+          margin-top: -1px;
+          overflow-x: auto;
+          text-align: center;
+          white-space: nowrap;
+          -webkit-overflow-scrolling: touch;
+        }
+  
+        .btn-bd-primary {
+          --bd-violet-bg: #712cf9;
+          --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
+  
+          --bs-btn-font-weight: 600;
+          --bs-btn-color: var(--bs-white);
+          --bs-btn-bg: var(--bd-violet-bg);
+          --bs-btn-border-color: var(--bd-violet-bg);
+          --bs-btn-hover-color: var(--bs-white);
+          --bs-btn-hover-bg: #6528e0;
+          --bs-btn-hover-border-color: #6528e0;
+          --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+          --bs-btn-active-color: var(--bs-btn-hover-color);
+          --bs-btn-active-bg: #5a23c8;
+          --bs-btn-active-border-color: #5a23c8;
+        }
+        .bd-mode-toggle {
+          z-index: 1500;
+        }
+      </style>
+
+    <!-- Custom styles for this template -->
+    <!-- <link href="/static/dashboard.css" rel="stylesheet"> -->
+
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-body-tertiary sidebar collapse">
+        <div class="position-sticky pt-3 sidebar-sticky">
+                <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+                    <img src="{% static 'guitar.svg' %}" width="32" height="32"/>
+                    <span class="fs-4">LearnEng</span>
+                </a>
+                <hr>
+            <ul class="nav nav-pills flex-column mb-auto">
+                <li class="nav-item">
+                    <a href="#" class="nav-link active" aria-current="page">
+                    <img src="{% static 'house-door-fill.svg' %}" width="32" height="32"/>
+                    <span class="fs-4">Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link link-body-emphasis">
+                    <img src="{% static 'about.svg' %}" width="32" height="32"/>
+                    <span class="fs-4">About</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link link-body-emphasis">
+                    <img src="{% static 'grammar.svg' %}" width="32" height="32"/>
+                    <span class="fs-4">Grammar</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link link-body-emphasis">
+                    <img src="{% static 'vocabulary.svg' %}" width="32" height="32"/>
+                    <span class="fs-4">Vocabulary</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link link-body-emphasis">
+                    <img src="{% static 'tests.svg' %}" width="32" height="32"/>
+                    <span class="fs-4">Tests</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link link-body-emphasis">
+                    <img src="{% static 'dict.svg' %}" width="32" height="32"/>
+                    <span class="fs-4">Dictionary</span>
+                    </a>
+                </li>
+                </ul>
+        </div>
+        </nav>
+    
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">Dashboard</h1>
+            <div class="btn-toolbar mb-2 mb-md-0">
+            <div class="btn-group me-2">
+                <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
+                <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+            </div>
+            <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+                <span data-feather="calendar" class="align-text-bottom"></span>
+                This week
+            </button>
+            </div>
+        </div>
+
+        <section class="py-5 text-center container">
+            <div class="row py-lg-5">
+              <div class="col-lg-6 col-md-8 mx-auto">
+                <h1 class="fw-bold">{% block page-title %}{% endblock %}</h1>
+                <p class="lead text-body-secondary">{% block page-lead %}{% endblock %}</p>
+                <!-- <p>
+                  <a href="#" class="btn btn-primary my-2">Main call to action</a>
+                  <a href="#" class="btn btn-secondary my-2">Secondary action</a>
+                </p> -->
+              </div>
+            </div>
+        </section>
+        {% block content %}{% endblock %}
+        <footer class="footer pt-3 mt-4 text-muted border-top">© 2023</footer>
+        
+        </div>
+        </main>
+    </div>
+    </div>
+</body>
+</html>
