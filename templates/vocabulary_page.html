@@ -10,5 +10,62 @@
   
 
 {% block content %}
+<link href="/static/carousel.css" rel="stylesheet">
 
+<div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+          <rect width="100%" height="100%" fill="var(--bs-secondary-color)"/>
+          <image href="/static/blue_bubbles.svg" width="100%" class="d-block w-100"/>
+        </svg>
+        <div class="container">
+          <div class="carousel-caption text-start">
+            <h1 style="color:rgb(0, 0, 0)">Choose a topic that is most interesting to you.</h1>
+            <p style="color:rgb(0, 0, 0)">Here you can find a variety of topics.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-item">
+        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+          <rect width="100%" height="100%" fill="var(--bs-secondary-color)"/>
+          <image href="/static/blue_bubbles.svg" width="100%" class="d-block w-100"/>
+        </svg>
+        <div class="container">
+          <div class="carousel-caption text-start">
+            <h1 style="color:rgb(0, 0, 0)">Go to the chosen page and see the contents prepared for you.</h1>
+            <p style="color:rgb(0, 0, 0)">Every topic page has a table with a list of most important and popular words and their combinations.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-item">
+        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+          <rect width="100%" height="100%" fill="var(--bs-secondary-color)"/>
+          <image href="/static/blue_bubbles.svg" width="100%" class="d-block w-100"/>
+        </svg>
+        <div class="container">
+          <div class="carousel-caption text-start">
+            <h1 style="color:rgb(0, 0, 0)">After exploring the table try to read the proposed text and answer the questions.</h1>
+            <p style="color:rgb(0, 0, 0)">This part of the page is for upgrading your reading skills. For more practice see "Tests" page.</p>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
 {% endblock %}
