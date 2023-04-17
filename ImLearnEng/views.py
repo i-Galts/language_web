@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.core.cache import cache
 from ImLearnEng import words_work
+import os
 
 # Create your views here.
 
@@ -21,3 +22,7 @@ def tests_page(request):
 
 def add_words_dict(request):
     return render(request, "add_words_dict.html")
+
+def vocab_season_page(request):
+    words = words_work.get_words_for_table("./data/vocab_season.csv")
+    return render(request, "vocab_season_page.html", context={"words": words})

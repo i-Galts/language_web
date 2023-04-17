@@ -1,0 +1,34 @@
+{% extends "base_page.html" %}
+
+{% block page-title %}
+SEASONS AND WEATHER
+{% endblock %}
+
+{% block page-lead %}
+See what speech techniques help us to describe the outer world.
+{% endblock %}
+  
+
+{% block content %}
+<div class="table-responsive">
+    <table class="table table-striped table-sm">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Word in English</th>
+          <th scope="col">Word in Russian</th>
+          <th scope="col">Examples</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for cnt, word, translation, example in words %}
+        <tr>
+            <td class="py-3">{{ cnt }}</td>
+            <td class="py-3">{{ word }}</td>
+            <td class="py-3">{{ translation }}</td>
+            <td class="py-3">{{ example }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+{% endblock %}

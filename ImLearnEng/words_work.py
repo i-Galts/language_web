@@ -1,10 +1,10 @@
-def get_words_for_table():
+def get_words_for_table(filename):
     words = []
-    with open("./data/words.csv", "r", encoding="utf-8") as f:
+    with open(filename, "r", encoding="utf-8") as f:
         cnt = 1
-        for line in f.readlines()[1:]:
-            word, translation = line.split(";")
-            words.append([cnt, word, translation])
+        for line in f.readlines()[0:]:
+            word, translation, example = line.split(";")
+            words.append([cnt, word, translation, example])
             cnt += 1
     return words
 
