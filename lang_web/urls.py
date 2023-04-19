@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path
 
 from ImLearnEng.views import index, info_page, grammar_page, \
-                             vocabulary_page, tests_page, add_words_dict, \
+                             vocabulary_page, tests_page, dict_main, \
                              vocab_season_page
 
 urlpatterns = [
@@ -27,6 +27,6 @@ urlpatterns = [
     path('grammar-page', grammar_page),
     path('vocabulary-page', vocabulary_page),
     path('tests-page', tests_page),
-    path('add-words-dict', add_words_dict),
+    path('dict-main', dict_main),
     path('vocab-season-page', vocab_season_page)
 ]

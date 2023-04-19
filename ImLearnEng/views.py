@@ -20,8 +20,8 @@ def vocabulary_page(request):
 def tests_page(request):
     return render(request, "tests_page.html")
 
-def add_words_dict(request):
-    return render(request, "add_words_dict.html")
+def dict_main(request):
+    return render(request, "dict_main.html")
 
 def vocab_season_page(request):
     words = words_work.get_words_for_table("./data/vocab_season.csv")
