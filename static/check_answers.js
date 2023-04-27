@@ -825,9 +825,9 @@
     //         return elmnt.currentStyle[style];
     //     }
     // }
-    // function w3_trim(x) {
-    //     return x.replace(/^\s+|\s+$/gm,'') 
-    // }
+    function w3_trim(x) {
+        return x.replace(/^\s+|\s+$/gm,'') 
+    }
     // var validHTML = function (html) {
     //     var doc = document.createElement('html');
     //     if (html.toLowerCase().indexOf("<head>") == -1) {
