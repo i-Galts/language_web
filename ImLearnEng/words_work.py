@@ -3,7 +3,7 @@ def get_words_for_table(filename):
     with open(filename, "r", encoding="utf-8") as f:
         for line in f.readlines()[1:]:
             id, word, translation, example, source = line.split(";")
-            words.append([id, word, translation, example])
+            words.append([int(id), word, translation, example])
     return words
 
 def write_word(new_word, new_translation, new_example):
@@ -19,12 +19,43 @@ def write_word(new_word, new_translation, new_example):
     with open("./data/words.csv", "w", encoding="utf-8") as f:
         f.write("\n".join(new_words))
 
-def update_word(upd_Id, upd_word, upd_translation, upd_example):
-    upd_word_line = f"{upd_Id};{upd_word};{upd_translation};{upd_example};user"
+def update_word(upd_Id, upd_word):
+    with open("./data/words.csv", "r", encoding="utf-8") as f:
+        i = 1
+        replaced_content = []
+        for line in f:
+            if i == upd_Id:
+                old_word = line.split(';')[1]
+                new_line = line.replace(old_word, upd_word)
+            else:
+                new_line = line
+            replaced_content.append(new_line)
+            i += 1
+
     with open("./data/words.csv", "w", encoding="utf-8") as f:
-        existing_words = [l.strip("\n") for l in f.readlines()]
-        title = existing_words[0]
-        old_words = existing_words[1:]
+        f.write("".join(replaced_content))
+
+def update_translation(upd_Id, upd_trans):
+    with open("./data/words.csv", "r", encoding="utf-8") as f:
+        i = 1
+        replaced_content = []
+        for line in f:
+            if i == upd_Id:
+                old_word = line.split(';')[2]
+                new_line = line.replace(old_word, upd_trans)
+            else:
+                new_line = line
+            replaced_content.append(new_line)
+            i += 1
+
+    with open("./data/words.csv", "w", encoding="utf-8") as f:
+        f.write("".join(replaced_content))
+
+def update_translation(upd_Id, upd_translation):
+    pass
+
+def update_example(upd_Id, upd_example):
+    pass
 
 
 #def delete_word():

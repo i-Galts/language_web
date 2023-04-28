@@ -105,14 +105,14 @@
                         </tr>
                     </thead>
                     <tbody id="words-table">
-                        {% for cnt, word, translation, example in words %}
+                        <!-- {% for cnt, word, translation, example in words %}
             			<tr>
 							<td class="py-3">{{ cnt }}</td>
 							<td class="py-3">{{ word }}</td>
 							<td class="py-3">{{ translation }}</td>
 							<td class="py-3">{{ example }}</td>
             			</tr>
-            			{% endfor %}
+            			{% endfor %} -->
                     </tbody>
                     </table>
                 </div>
@@ -128,52 +128,103 @@
 <script>
 
 	var newId = 1
-	var newWord = {'cnt':`word-${newId}`, 'word':null, 'id':`word-${newId}`, 'translation':null, 'example':null}
+	var newWord = {'id':`word-${newId}`, 'wd':null, 'translation':null, 'example':null}
 
-	$('#add-word').on('click', function() {
-		$(`.form-wrapper`).removeClass('hidden')
+	// $('#add-word').on('click', function() {
+	// 	$(`.form-wrapper`).removeClass('hidden')
+	// })
+
+	$('#word-id').on('change', function(){
+		newWord.id = $(this).val()
+		console.log(newTest)
 	})
 
-
-	$('#word-result').on('keyup', function() {
-		newWord.result = $(this).val()
+	$('#word-wd').on('keyup', function() {
+		newWord.wd = $(this).val()
 		console.log(newWord)
 	})
 
-	$('#word-name').on('change', function() {
-		newWord.name = $(this).val()
+	$('#word-translation').on('keyup', function() {
+		newWord.translation = $(this).val()
 		console.log(newWord)
 	})
 
-	$('#create-word').on('click', function(){
-		if(newWord.name == null) {
-			alert('No word selected!')
-		} else {
-			addRow(newWord)
-			$(`#word-name`).val('')
-			$(`#word-result`).val('')
-			$(`.form-wrapper`).removeClass('hidden')
+	$('#word-example').on('keyup', function() {
+		newWord.example = $(this).val()
+		console.log(newWord)
+	})
+
+	// $('#create-word').on('click', function(){
+	// 	if(newWord.name == null) {
+	// 		alert('No word selected!')
+	// 	} else {
+	// 		addRow(newWord)
+	// 		$(`#word-name`).val('')
+	// 		$(`#word-example`).val('')
+	// 		$(`.form-wrapper`).removeClass('hidden')
+	// 	}
+	// })
+
+	var words = []
+
+	var dataURL = 'words-api'
+	$.ajax({
+		method:'GET',
+		url:dataURL,
+		success:function(response) {
+			words = response
+			console.log(words)
+			for (var i in words){
+				addRow(words[i])
+			}
 		}
 	})
 
-	var words = [
-		// {'cnt':'1', 'word':'ice',  'id':'1', 'translation':'лед', 'example':'Ice melts.'},
-		// {'cnt':'2', 'word':'fire', 'id':'2', 'translation':'огонь', 'example':'Fire is burning.'},
-		// {'cnt':'3', 'word':'taste','id':'3', 'translation':'вкус', 'example':'You have a good taste.'},
-	]
+	function update_word_POST(data) {
+		var url = '/update-word'
 
-	// var dataURL = 
+		$.ajax({
+			method:'POST',
+			url:url,
+			data:data,
+			success:function() {
 
-	for (var i in words){
-		addRow(words[i])
+			}
+		})
+	}
+
+	function update_translation_POST(data) {
+		var url = '/update-translation'
+
+		$.ajax({
+			method:'POST',
+			url:url,
+			data:data,
+			success:function() {
+
+			}
+		})
+	}
+
+	function delete_word(data) {
+		var url = '/delete-word'
+
+		$.ajax({
+			method:'POST',
+			url:url,
+			data:data,
+			seuccess:function() {
+
+			}
+		})
 	}
 
 	function addRow(obj){
 		var row = `<tr scope="row" class="word-row-${obj.id}">
-	    			   <td>${obj.cnt}</td>
-	    			   <td>${obj.word}</td>
-	    			   <td>${obj.translation}</td>
-	                   <td id="result-${obj.id}" data-wordid="${obj.id}">${obj.example}</td>
+	    			   <td>${obj.id}</td>
+	    			   <td id="wd-${obj.id}" data-wordid="${obj.id}">${obj.wd}</td>
+	    			   <td id="translation-${obj.id}" data-wordid="${obj.id}">${obj.translation}</td>
+	                   <td id="example-${obj.id}" data-wordid="${obj.id}">${obj.example}</td>
 	                   <td>
 	                   		<button class="btn btn-sm btn-danger" data-wordid="${obj.id}" id="delete-${obj.id}">Delete</button>
 	                   		<button class="btn btn-sm btn-info" disabled data-wordid="${obj.id}" id="save-${obj.id}">Save</button>
@@ -188,19 +239,50 @@
         $(`#delete-${obj.id}`).on('click', deleteWord)
         $(`#cancel-${obj.id}`).on('click', cancelDeletion)
         $(`#confirm-${obj.id}`).on('click', confirmDeletion)
+		$(`#save-${obj.id}`).on('click', saveUpdate)
         
-        $(`#result-${obj.id}`).on('click', editResult)
+		$(`#wd-${obj.id}`).on('click', editWord)
+		$(`#translation-${obj.id}`).on('click', editTranslation)
+        $(`#example-${obj.id}`).on('click', editExample)
 
 	}
 
-	function editResult() {
+	function editWord() {
         var wordid = $(this).data('wordid')
         var value = $(this).html()
 
         $(this).unbind()
-        $(this).html(`<input class="result form-control" data-wordid="${wordid}" type="text" value="${value}">`)
+        $(this).html(`<input class="wd form-control" data-wordid="${wordid}" id="wd-${wordid}" type="text" value="${value}">`)
 
-        $(`.result`).on('keyup', function() {
+        $(`.wd`).on('keyup', function() {
+            var wordid = $(this).data('wordid')
+            var saveBtn = $(`#save-${wordid}`)
+            saveBtn.prop('disabled', false)
+        })
+	}
+
+	function editTranslation() {
+        var wordid = $(this).data('wordid')
+        var value = $(this).html()
+
+        $(this).unbind()
+        $(this).html(`<input class="translation form-control" data-wordid="${wordid}" id="translation-${wordid}" type="text" value="${value}">`)
+
+        $(`.translation`).on('keyup', function() {
+            var wordid = $(this).data('wordid')
+            var saveBtn = $(`#save-${wordid}`)
+            saveBtn.prop('disabled', false)
+        })
+	}
+
+	function editExample() {
+        var wordid = $(this).data('wordid')
+        var value = $(this).html()
+
+        $(this).unbind()
+        $(this).html(`<input class="example form-control" data-wordid="${wordid}" type="text" value="${value}">`)
+
+        $(`.example`).on('keyup', function() {
             var wordid = $(this).data('wordid')
             var saveBtn = $(`#save-${wordid}`)
             saveBtn.prop('disabled', false)
@@ -213,7 +295,21 @@
         var row = $(`.word-row-${wordid}`)
 
         saveBtn.prop('disabled', true)
-        // row.css("opacity", "0.5")
+
+		row.css('opacity', "0.5")
+
+		setTimeout(function(){
+			row.css('opacity', '1')
+		}, 2000)
+
+		var wd = $(`#wd-${wordid}`).val()
+		var data = {'id':wordid, 'wd':wd}
+		update_word_POST(data)
+
+		var trans = $(`#translation-${wordid}`).val()
+		var data = {'id':wordid, 'wd':trans}
+		update_translation_POST(data)
+
 	}
 
 	function deleteWord() {

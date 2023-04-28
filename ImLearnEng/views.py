@@ -36,7 +36,10 @@ def word_list(request):
 
 def words_api(request):
     words = words_work.get_words_for_table("./data/words.csv")
-    return JsonResponse(words, safe=False, json_dumps_params={'ensure_ascii': False})
+    words_to_dict = [ {'id': w[0], 'word': w[1],
+                       'translation': w[2], 'example': w[3]} for w in words]
+
+    return JsonResponse(words_to_dict, safe=False, json_dumps_params={'ensure_ascii': False})
 
 def add_word(request):
     return render(request, "word_add.html")
@@ -70,13 +73,28 @@ def send_word(request):
 
 def update_word(request):
     if request.method == "POST":
+        wordId = request.POST.get("id", "")
+        word = request.POST.get("wd", "")
+
+        # print("LALA wordId = ", wordId)
+        # print("LALA word = ", word)
+
+        words_work.update_word(wordId, word)
+        return JsonResponse("Word list updated!", safe=False)
+    else:
+        word_list(request)
+
+def update_translation(request):
+    if request.method == "POST":
         cache.clear()
         wordId = request.POST.get("id", "")
-        word = request.POST.get("word", "")
-        translation = request.POST.get("translation", "")
-        example = request.POST.get("example", "").replace(";", ",")
+        trans = request.POST.get("wd", "")
 
-        update_word(wordId, word, translation, example)
+        print("LALA wordId = ", wordId)
+        print("LALA trans = ", trans)
+
+        words_work.update_translation(wordId, trans)
+        return JsonResponse("Word list updated!", safe=False)
     else:
         word_list(request)
 
