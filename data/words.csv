@@ -1,3 +1,4 @@
-Love;Любовь;Love is all you need.;user
-Air;Воздух;Fresh air is very important.;user
-Water;Вода;Smoke on the water, the fie in the sky.;user
+id;word;translation;example;source
+1;Love;Любовь;Love is all you need.;user
+2;Air;Воздух;Fresh air is very important.;user
+3;Water;Вода;Smoke on the water, the fie in the sky.;user

@@ -1,16 +1,14 @@
 def get_words_for_table(filename):
     words = []
     with open(filename, "r", encoding="utf-8") as f:
-        cnt = 1
-        for line in f.readlines()[0:]:
-            word, translation, example, source = line.split(";")
-            words.append([cnt, word, translation, example])
-            cnt += 1
+        for line in f.readlines()[1:]:
+            id, word, translation, example, source = line.split(";")
+            words.append([id, word, translation, example])
     return words
 
-
 def write_word(new_word, new_translation, new_example):
-    new_word_line = f"{new_word};{new_translation};{new_example};user"
+    last_id = len(get_words_for_table())
+    new_word_line = f"{last_id + 1};{new_word};{new_translation};{new_example};user"
     with open("./data/words.csv", "r", encoding="utf-8") as f:
         existing_words = [l.strip("\n") for l in f.readlines()]
         title = existing_words[0]
@@ -21,9 +19,15 @@ def write_word(new_word, new_translation, new_example):
     with open("./data/words.csv", "w", encoding="utf-8") as f:
         f.write("\n".join(new_words))
 
-#def delete_word():
+def update_word(upd_Id, upd_word, upd_translation, upd_example):
+    upd_word_line = f"{upd_Id};{upd_word};{upd_translation};{upd_example};user"
+    with open("./data/words.csv", "w", encoding="utf-8") as f:
+        existing_words = [l.strip("\n") for l in f.readlines()]
+        title = existing_words[0]
+        old_words = existing_words[1:]
 
-# def edit_word():
+
+#def delete_word():
 
 
 # def get_terms_stats():

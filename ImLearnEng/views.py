@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.core.cache import cache
+from django.http import JsonResponse
 from ImLearnEng import words_work
 import os
 
@@ -33,6 +34,10 @@ def word_list(request):
     words = words_work.get_words_for_table("./data/words.csv")
     return render(request, "word_list.html", context={"words": words})
 
+def words_api(request):
+    words = words_work.get_words_for_table("./data/words.csv")
+    return JsonResponse(words, safe=False, json_dumps_params={'ensure_ascii': False})
+
 def add_word(request):
     return render(request, "word_add.html")
 
@@ -62,6 +67,22 @@ def send_word(request):
         return render(request, "word_request.html", context)
     else:
         add_word(request)
+
+def update_word(request):
+    if request.method == "POST":
+        cache.clear()
+        wordId = request.POST.get("id", "")
+        word = request.POST.get("word", "")
+        translation = request.POST.get("translation", "")
+        example = request.POST.get("example", "").replace(";", ",")
+
+        update_word(wordId, word, translation, example)
+    else:
+        word_list(request)
+
+def delete_word(request):
+    pass
+
 
 def vocab_season_page(request):
     words = words_work.get_words_for_table("./data/vocab_season.csv")
