@@ -1,8 +1,4 @@
-Spring;Весна;Spring is beautiful;user
-Winter;Зима;It usually snows in winter;user
-Summer;Лето;Everybody loves summer for it unique vibes;user
-
-id;word;translation;example
+id;word;translation;example;source
 1;Spring;Весна;Spring is beautiful;user
 2;Winter;Зима;It usually snows in winter;user
 3;Summer;Лето;Everybody loves summer for it unique vibes;user

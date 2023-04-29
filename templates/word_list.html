@@ -10,52 +10,6 @@
   
 
 {% block content %}
-<!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css"> -->
-
-<!-- <table id="example" class="table table-striped" style="width:100%">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Position</th>
-            <th>Office</th>
-            <th>Age</th>
-            <th>Start date</th>
-            <th>Salary</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Tiger Nixon</td>
-            <td>System Architect</td>
-            <td>Edinburgh</td>
-            <td>61</td>
-            <td>2011-04-25</td>
-            <td>$320,800</td>
-        </tr>
-        <tr>
-            <td>Garrett Winters</td>
-            <td>Accountant</td>
-            <td>Tokyo</td>
-            <td>63</td>
-            <td>2011-07-25</td>
-            <td>$170,750</td>
-        </tr>
-        <tr>
-            <td>Ashton Cox</td>
-            <td>Junior Technical Author</td>
-            <td>San Francisco</td>
-            <td>66</td>
-            <td>2009-01-12</td>
-            <td>$86,000</td>
-        </tr>
-        
-</table>
-
-<script type="text/javascript" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script> -->
-<!-- <script type="text/javascript" src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script> -->
-<!-- <script type="text/javascript" src="/static/nicetable.js"></script> -->
-
-<!-- ------------------------------------------------------------------------------------------------------------------------------------------------------ -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
@@ -79,19 +33,6 @@
 	    <div class="col-md-12">
 
 		    <div class="card card-body">
-				
-				<!-- Form Wrapper & Button -->
-			<button class="btn btn-sm btn-primary" id="add-word">Add word</button>
-			<div class="form-wrapper hidden">
-				<select class="form-control" id="word-name">
-					<option>----------</option>
-					<option>Flash Point</option>
-					<option>Water</option>
-					<option>Distillation</option>
-				</select>
-				<input class="form-control" type="text" id="word-result">
-				<button class="btn btn-sm btn-info" id="create-word">Add</button>
-			</div>
 
                 <div class="table-responsive">
 					<table class="table table-striped table-sm">
@@ -105,14 +46,6 @@
                         </tr>
                     </thead>
                     <tbody id="words-table">
-                        <!-- {% for cnt, word, translation, example in words %}
-            			<tr>
-							<td class="py-3">{{ cnt }}</td>
-							<td class="py-3">{{ word }}</td>
-							<td class="py-3">{{ translation }}</td>
-							<td class="py-3">{{ example }}</td>
-            			</tr>
-            			{% endfor %} -->
                     </tbody>
                     </table>
                 </div>
@@ -128,46 +61,31 @@
 <script>
 
 	var newId = 1
-	var newWord = {'id':`word-${newId}`, 'wd':null, 'translation':null, 'example':null}
+	var newWord = {'id':`word-${newId}`, 'word':null, 'translation':null, 'example':null}
 
-	// $('#add-word').on('click', function() {
-	// 	$(`.form-wrapper`).removeClass('hidden')
+	// $('#word-id').on('change', function(){
+	// 	newWord.id = $(this).val()
+	// 	console.log(newTest)
 	// })
 
-	$('#word-id').on('change', function(){
-		newWord.id = $(this).val()
-		console.log(newTest)
-	})
+	// $('#word-word').on('change', function() {
+	// 	newWord.word = $(this).val()
+	// 	console.log(newWord)
+	// })
 
-	$('#word-wd').on('keyup', function() {
-		newWord.wd = $(this).val()
-		console.log(newWord)
-	})
+	// $('#word-translation').on('change', function() {
+	// 	newWord.translation = $(this).val()
+	// 	console.log(newWord)
+	// })
 
-	$('#word-translation').on('keyup', function() {
-		newWord.translation = $(this).val()
-		console.log(newWord)
-	})
-
-	$('#word-example').on('keyup', function() {
-		newWord.example = $(this).val()
-		console.log(newWord)
-	})
-
-	// $('#create-word').on('click', function(){
-	// 	if(newWord.name == null) {
-	// 		alert('No word selected!')
-	// 	} else {
-	// 		addRow(newWord)
-	// 		$(`#word-name`).val('')
-	// 		$(`#word-example`).val('')
-	// 		$(`.form-wrapper`).removeClass('hidden')
-	// 	}
+	// $('#word-example').on('change', function() {
+	// 	newWord.example = $(this).val()
+	// 	console.log(newWord)
 	// })
 
 	var words = []
 
-	var dataURL = 'words-api'
+	var dataURL = '/words-api'
 	$.ajax({
 		method:'GET',
 		url:dataURL,
@@ -206,7 +124,20 @@
 		})
 	}
 
-	function delete_word(data) {
+	function update_example_POST(data) {
+		var url = '/update-example'
+
+		$.ajax({
+			method:'POST',
+			url:url,
+			data:data,
+			success:function() {
+
+			}
+		})
+	}
+
+	function delete_word_POST(data) {
 		var url = '/delete-word'
 
 		$.ajax({
@@ -222,7 +153,7 @@
 	function addRow(obj){
 		var row = `<tr scope="row" class="word-row-${obj.id}">
 	    			   <td>${obj.id}</td>
-	    			   <td id="wd-${obj.id}" data-wordid="${obj.id}">${obj.wd}</td>
+	    			   <td id="word-${obj.id}" data-wordid="${obj.id}">${obj.word}</td>
 	    			   <td id="translation-${obj.id}" data-wordid="${obj.id}">${obj.translation}</td>
 	                   <td id="example-${obj.id}" data-wordid="${obj.id}">${obj.example}</td>
 	                   <td>
@@ -240,39 +171,9 @@
         $(`#cancel-${obj.id}`).on('click', cancelDeletion)
         $(`#confirm-${obj.id}`).on('click', confirmDeletion)
 		$(`#save-${obj.id}`).on('click', saveUpdate)
-        
-		$(`#wd-${obj.id}`).on('click', editWord)
-		$(`#translation-${obj.id}`).on('click', editTranslation)
+
         $(`#example-${obj.id}`).on('click', editExample)
 
-	}
-
-	function editWord() {
-        var wordid = $(this).data('wordid')
-        var value = $(this).html()
-
-        $(this).unbind()
-        $(this).html(`<input class="wd form-control" data-wordid="${wordid}" id="wd-${wordid}" type="text" value="${value}">`)
-
-        $(`.wd`).on('keyup', function() {
-            var wordid = $(this).data('wordid')
-            var saveBtn = $(`#save-${wordid}`)
-            saveBtn.prop('disabled', false)
-        })
-	}
-
-	function editTranslation() {
-        var wordid = $(this).data('wordid')
-        var value = $(this).html()
-
-        $(this).unbind()
-        $(this).html(`<input class="translation form-control" data-wordid="${wordid}" id="translation-${wordid}" type="text" value="${value}">`)
-
-        $(`.translation`).on('keyup', function() {
-            var wordid = $(this).data('wordid')
-            var saveBtn = $(`#save-${wordid}`)
-            saveBtn.prop('disabled', false)
-        })
 	}
 
 	function editExample() {
@@ -280,7 +181,7 @@
         var value = $(this).html()
 
         $(this).unbind()
-        $(this).html(`<input class="example form-control" data-wordid="${wordid}" type="text" value="${value}">`)
+        $(this).html(`<input class="example form-control" data-wordid="${wordid}" id="testexample-${wordid}" type="text" value="${value}">`)
 
         $(`.example`).on('keyup', function() {
             var wordid = $(this).data('wordid')
@@ -302,14 +203,22 @@
 			row.css('opacity', '1')
 		}, 2000)
 
-		var wd = $(`#wd-${wordid}`).val()
-		var data = {'id':wordid, 'wd':wd}
-		update_word_POST(data)
-
-		var trans = $(`#translation-${wordid}`).val()
-		var data = {'id':wordid, 'wd':trans}
-		update_translation_POST(data)
-
+		var example_raw = $(`#testexample-${wordid}`).val()
+		if (example_raw == undefined) {
+			var example = $(`#example-${wordid}`).html()
+		} else {
+			var example = example_raw
+		}
+		if (example.length == 0) {
+			alert("The form with example must be filled!")
+		} 
+		// else if (/\d/.test(example)) {
+		// 	alert("No numbers as digits are allowed!")
+		// }
+		else {
+			var data_example = {'id':wordid, 'example':example}
+			update_example_POST(data_example)
+		}
 	}
 
 	function deleteWord() {
@@ -346,6 +255,8 @@
         var wordid = $(this).data('wordid')
         var row = $(`.word-row-${wordid}`)
         row.remove()
+		var data = {'id':wordid}
+		delete_word_POST(data)
 	}
 </script>
 

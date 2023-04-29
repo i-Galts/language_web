@@ -7,7 +7,7 @@ def get_words_for_table(filename):
     return words
 
 def write_word(new_word, new_translation, new_example):
-    last_id = len(get_words_for_table())
+    last_id = len(get_words_for_table("./data/words.csv"))
     new_word_line = f"{last_id + 1};{new_word};{new_translation};{new_example};user"
     with open("./data/words.csv", "r", encoding="utf-8") as f:
         existing_words = [l.strip("\n") for l in f.readlines()]
@@ -19,46 +19,41 @@ def write_word(new_word, new_translation, new_example):
     with open("./data/words.csv", "w", encoding="utf-8") as f:
         f.write("\n".join(new_words))
 
-def update_word(upd_Id, upd_word):
-    with open("./data/words.csv", "r", encoding="utf-8") as f:
-        i = 1
-        replaced_content = []
-        for line in f:
-            if i == upd_Id:
-                old_word = line.split(';')[1]
-                new_line = line.replace(old_word, upd_word)
-            else:
-                new_line = line
-            replaced_content.append(new_line)
-            i += 1
-
-    with open("./data/words.csv", "w", encoding="utf-8") as f:
-        f.write("".join(replaced_content))
-
-def update_translation(upd_Id, upd_trans):
-    with open("./data/words.csv", "r", encoding="utf-8") as f:
-        i = 1
-        replaced_content = []
-        for line in f:
-            if i == upd_Id:
-                old_word = line.split(';')[2]
-                new_line = line.replace(old_word, upd_trans)
-            else:
-                new_line = line
-            replaced_content.append(new_line)
-            i += 1
-
-    with open("./data/words.csv", "w", encoding="utf-8") as f:
-        f.write("".join(replaced_content))
-
-def update_translation(upd_Id, upd_translation):
-    pass
-
 def update_example(upd_Id, upd_example):
-    pass
+    replaced_content = []
+    with open("./data/words.csv", "r", encoding="utf-8") as f:
+        i = 0
+        for line in f:
+            if i == upd_Id:
+                wlist = line.split(";")
+                wlist[3] = upd_example
+                new_line = ";".join(wlist)
+            else:
+                new_line = line
+            replaced_content.append(new_line)
+            i += 1
 
+    with open("./data/words.csv", "w", encoding="utf-8") as f:
+        f.write("".join(replaced_content))
 
-#def delete_word():
+def delete_word(id):
+    replaced_content = []
+    with open("./data/words.csv", "r", encoding="utf-8") as f:
+        i = 0
+        for line in f:
+            if i < id:
+                replaced_content.append(line)
+            elif i == id:
+                pass
+            else:
+                wlist = line.split(";")
+                wlist[0] = str(i - 1)
+                new_line = ";".join(wlist)
+                replaced_content.append(new_line)
+            i += 1
+
+    with open("./data/words.csv", "w", encoding="utf-8") as f:
+        f.write("".join(replaced_content))
 
 
 # def get_terms_stats():

@@ -48,8 +48,8 @@ def send_word(request):
     if request.method == "POST":
         cache.clear()
         user_name = request.POST.get("name")
-        new_word = request.POST.get("new_word", "")
-        new_translation = request.POST.get("new_translation", "")
+        new_word = request.POST.get("new_word", "").replace(";", ",")
+        new_translation = request.POST.get("new_translation", "").replace(";", ",")
         new_example = request.POST.get("new_example", "").replace(";", ",")
         context = {"user": user_name}
         if len(new_example) == 0:
@@ -71,35 +71,26 @@ def send_word(request):
     else:
         add_word(request)
 
-def update_word(request):
+def update_example(request):
     if request.method == "POST":
-        wordId = request.POST.get("id", "")
-        word = request.POST.get("wd", "")
+        wordId = int(request.POST.get("id", ""))
+        upd_example = request.POST.get("example", "").replace(";", ",")
 
-        # print("LALA wordId = ", wordId)
-        # print("LALA word = ", word)
-
-        words_work.update_word(wordId, word)
-        return JsonResponse("Word list updated!", safe=False)
-    else:
-        word_list(request)
-
-def update_translation(request):
-    if request.method == "POST":
-        cache.clear()
-        wordId = request.POST.get("id", "")
-        trans = request.POST.get("wd", "")
-
-        print("LALA wordId = ", wordId)
-        print("LALA trans = ", trans)
-
-        words_work.update_translation(wordId, trans)
+        words_work.update_example(wordId, upd_example)
         return JsonResponse("Word list updated!", safe=False)
     else:
         word_list(request)
 
 def delete_word(request):
-    pass
+    if request.method == "POST":
+        wordId = int(request.POST.get("id", ""))
+
+        print("LALA wordId = ", wordId)
+
+        words_work.delete_word(wordId)
+        return JsonResponse("Word list updated!", safe=False)
+    else:
+        word_list(request)
 
 
 def vocab_season_page(request):
