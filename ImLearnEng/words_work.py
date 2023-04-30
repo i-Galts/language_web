@@ -2,13 +2,13 @@ def get_words_for_table(filename):
     words = []
     with open(filename, "r", encoding="utf-8") as f:
         for line in f.readlines()[1:]:
-            id, word, translation, example, source = line.split(";")
+            id, word, translation, example = line.split(";")
             words.append([int(id), word, translation, example])
     return words
 
 def write_word(new_word, new_translation, new_example):
     last_id = len(get_words_for_table("./data/words.csv"))
-    new_word_line = f"{last_id + 1};{new_word};{new_translation};{new_example};user"
+    new_word_line = f"{last_id + 1};{new_word};{new_translation};{new_example}"
     with open("./data/words.csv", "r", encoding="utf-8") as f:
         existing_words = [l.strip("\n") for l in f.readlines()]
         title = existing_words[0]
@@ -26,8 +26,10 @@ def update_example(upd_Id, upd_example):
         for line in f:
             if i == upd_Id:
                 wlist = line.split(";")
-                wlist[3] = upd_example
+                print(wlist)
+                wlist[3] = upd_example + "\n"
                 new_line = ";".join(wlist)
+                print(new_line)
             else:
                 new_line = line
             replaced_content.append(new_line)

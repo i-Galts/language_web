@@ -23,6 +23,8 @@ urlpatterns = [
     path('', views.index),
     path('info-page', views.info_page),
     path('grammar-page', views.grammar_page),
+    path('grammar-cond-page', views.grammar_cond_page),
+    path('grammar-adject-page', views.grammar_adject_page),
     path('vocabulary-page', views.vocabulary_page),
     path('tests-page', views.tests_page),
     path('dict-main', views.dict_main),
@@ -33,6 +35,7 @@ urlpatterns = [
     path('delete-word', views.delete_word),
     path('send-word', views.send_word),
     path('vocab-season-page', views.vocab_season_page),
+    path('vocab-appear-page', views.vocab_appear_page),
     path('test-conditionals-1', views.test_conditionals_1),
     path('test-conditionals-2', views.test_conditionals_2)
 ]

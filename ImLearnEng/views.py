@@ -96,3 +96,14 @@ def delete_word(request):
 def vocab_season_page(request):
     words = words_work.get_words_for_table("./data/vocab_season.csv")
     return render(request, "vocab_season_page.html", context={"words": words})
+
+def vocab_appear_page(request):
+    words = words_work.get_words_for_table("./data/vocab_appear.csv")
+    return render(request, "vocab_appear_page.html", context={"words": words})
+
+def grammar_cond_page(request):
+    return render(request, "grammar_cond_page.html")
+
+def grammar_adject_page(request):
+    words = words_work.get_words_for_table("./data/grammar_adject.csv")
+    return render(request, "grammar_adject_page.html", context={"words": words})

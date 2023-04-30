@@ -10,5 +10,106 @@
   
 
 {% block content %}
+<style>
+    a {
+      text-decoration: none !important;
+      color: rgb(104, 57, 153);
+    }
+    
+  </style>
+  <link href="/static/carousel.css" rel="stylesheet">
+  
+  <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+            <rect width="100%" height="100%" fill="var(--bs-secondary-color)"/>
+            <image href="/static/green_bubbles.svg" width="100%" class="d-block w-100"/>
+          </svg>
+          <div class="container">
+            <div class="carousel-caption text-start">
+              <h1 style="color:rgb(0, 0, 0)">Choose a topic that is most interesting to you.</h1>
+              <p style="color:rgb(0, 0, 0)">Here you can find a variety of topics.</p>
+            </div>
+          </div>
+        </div>
+  
+        <div class="carousel-item">
+          <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+            <rect width="100%" height="100%" fill="var(--bs-secondary-color)"/>
+            <image href="/static/green_bubbles.svg" width="100%" class="d-block w-100"/>
+          </svg>
+          <div class="container">
+            <div class="carousel-caption text-start">
+              <h1 style="color:rgb(0, 0, 0)">Go to the chosen page and see the contents prepared for you.</h1>
+              <p style="color:rgb(0, 0, 0)">Each page has a table with a list of grammar rules.</p>
+            </div>
+          </div>
+        </div>
+  
+        <div class="carousel-item">
+          <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+            <rect width="100%" height="100%" fill="var(--bs-secondary-color)"/>
+            <image href="/static/green_bubbles.svg" width="100%" class="d-block w-100"/>
+          </svg>
+          <div class="container">
+            <div class="carousel-caption text-start">
+              <h1 style="color:rgb(0, 0, 0)">After exploring the table try to pass the proposed tests.</h1>
+              <p style="color:rgb(0, 0, 0)">This part of the page is for helping you to revise a bit of grammar.</p>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+  </div>
+  
+  <!-- START THE FEATURETTES -->
 
+  <div class="row featurette">
+    <div class="col-md-7 order-md-2">
+      <h2 class="featurette-heading fw-normal lh-1">
+        <a href="/grammar-cond-page">Conditionals.</a>
+        <p class="lead" style="font-size: xx-large;">An important topic which allows us think in terms of "if... then..." clauses.</p>
+      </h2>
+    </div>
+    <div class="col-md-5 order-md-1">
+      <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img"  preserveAspectRatio="xMidYMid slice" focusable="false">
+        <rect width="100%" height="100%" fill="white"/>
+        <image href="/static/if.svg" width="100%" height="100%" class="d-block w-100"/>
+      </svg>
+    </div>
+  </div>
+  
+  <hr class="featurette-divider">
+  
+  <div class="row featurette">
+    <div class="col-md-7">
+      <h2 class="featurette-heading fw-normal lh-1">
+         <a href="/grammar-adject-page">Comparison of Adjectives.</a>
+      <p class="lead" style="font-size: xx-large;">Comparing things between each other is what we can't live without.</p>
+    </div>
+    <div class="col-md-5">
+      <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img"  preserveAspectRatio="xMidYMid slice" focusable="false">
+        <rect width="100%" height="100%" fill="white"/>
+        <image href="/static/best.svg" width="100%" height="100%" class="d-block w-100"/>
+      </svg>
+    </div>
+  </div>
+  
+  <hr class="featurette-divider">
+  
+  <!-- /END THE FEATURETTES -->
 {% endblock %}

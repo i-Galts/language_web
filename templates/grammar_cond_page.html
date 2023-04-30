@@ -1,0 +1,60 @@
+{% extends "base_page.html" %}
+
+{% block page-title %}
+CONDITIONALS
+{% endblock %}
+
+{% block page-lead %}
+An important topic which allows us think in terms of "if... then..." clauses.
+{% endblock %}
+  
+
+{% block content %}
+<h2 class="pb-2 border-bottom">A table which enumerates basic types of conditionals.</h2>
+<div class="table-responsive">
+    <table class="table table table-hover table-bordered border-danger table-sm">
+      <thead>
+        <tr class="table-secondary border border-danger">
+          <th scope="col">Type</th>
+          <th scope="col">Real/Unreal</th>
+          <th scope="col">Time of action</th>
+          <th scope="col">Examples</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="table-warning border border-danger">
+            <td class="py-3">0</td>
+            <td class="py-3">Real</td>
+            <td class="py-3">Present</td>
+            <td class="py-3"><u>If temperature goes</u> under zero Celsius, <u>water freezes</u>.</td>
+        </tr>
+        <tr class="table-warning border border-danger">
+            <td class="py-3">1</td>
+            <td class="py-3">Real</td>
+            <td class="py-3">Future</td>
+            <td class="py-3"><u>If it rains</u>, <u>we will stay</u> at home.</td>
+        </tr>
+        <tr class="table-warning border border-danger">
+            <td class="py-3">2</td>
+            <td class="py-3">Unreal</td>
+            <td class="py-3">Present, Future</td>
+            <td class="py-3"><u>If I studied</u> better, <u>I would pass</u> this exam easier.</td>
+        </tr>
+        <tr class="table-warning border border-danger">
+            <td class="py-3">3</td>
+            <td class="py-3">Unreal</td>
+            <td class="py-3">Past</td>
+            <td class="py-3"><u>If I had studied</u> better, <u>I would have passed</u> this exam easier.</td>
+        </tr>
+      </tbody>
+</table>
+
+<br><br>
+
+<h2 class="pb-2 border-bottom">Now check yourself solving a small test.</h2>
+<div class="d-grid gap-2">
+    <a href="/test-conditionals-1" class="btn btn-primary" role="button">Go to the test</a>
+    </button>
+</div>
+
+{% endblock %}
