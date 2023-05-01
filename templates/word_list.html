@@ -105,32 +105,6 @@
 		}
 	})
 
-	function update_word_POST(data) {
-		var url = '/update-word'
-
-		$.ajax({
-			method:'POST',
-			url:url,
-			data:data,
-			success:function() {
-
-			}
-		})
-	}
-
-	function update_translation_POST(data) {
-		var url = '/update-translation'
-
-		$.ajax({
-			method:'POST',
-			url:url,
-			data:data,
-			success:function() {
-
-			}
-		})
-	}
-
 	function update_example_POST(data) {
 		var url = '/update-example'
 
@@ -218,11 +192,7 @@
 		}
 		if (example.length == 0) {
 			alert("The form with example must be filled!")
-		} 
-		// else if (/\d/.test(example)) {
-		// 	alert("No numbers as digits are allowed!")
-		// }
-		else {
+		} else {
 			var data_example = {'id':wordid, 'example':example}
 			update_example_POST(data_example)
 		}

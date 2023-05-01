@@ -72,46 +72,6 @@ function checkassignmentcode() {
     cc = (i == 1) ? "" : i;
     if (document.getElementById("correctcode" + cc)) {
       correct = document.getElementById("correctcode" + cc).textContent;
-      // if (exsection == "BS3") {
-      //   correct = document.getElementById("correctcode" + cc).innerHTML;
-      //   correct = correct.replace(/&lt;/g, "<");
-      //   correct = correct.replace(/&gt;/g, ">");
-      // }
-      // if (exsection == "BS4") {
-      //   correct = document.getElementById("correctcode" + cc).innerHTML;
-      //   correct = correct.replace(/&lt;/g, "<");
-      //   correct = correct.replace(/&gt;/g, ">");
-      // }
-      // if (exsection == "BS5") {
-      //   correct = document.getElementById("correctcode" + cc).innerHTML;
-      //   correct = correct.replace(/&lt;/g, "<");
-      //   correct = correct.replace(/&gt;/g, ">");
-      // }
-      // if (exsection == "TYPESCRIPT") {
-      //   correct = document.getElementById("correctcode" + cc).innerHTML;
-      //   correct = correct.replace(/&lt;/g, "<");
-      //   correct = correct.replace(/&gt;/g, ">");
-      // }
-      // if (exsection == "SQL") {
-      //   check = check.toLowerCase();
-      //   correct = correct.toLowerCase();
-      // }
-      // if (exsection == "AWS") {
-      //   check = check.toLowerCase();
-      //   correct = correct.toLowerCase();
-      // }
-      // if (exsection == "AWSSL") {
-      //   check = check.toLowerCase();
-      //   correct = correct.toLowerCase();
-      // }    
-      // if (exsection == "MySQL") {
-      //   check = check.toLowerCase();
-      //   correct = correct.toLowerCase();
-      // }
-      // if (exsection == "HTML_2") {
-      //   check = check.toLowerCase();
-      //   correct = correct.toLowerCase();
-      // }
       if (editable == true) {
         if (check == correct) {
           result = "correct";
@@ -131,30 +91,7 @@ function checkassignmentcode() {
     moreCorrect = (document.getElementById("correctcode" + cc));
   }
   if (result == "correct") {
-    // var answerButtonElm = document.getElementById("answerbutton"),
-    //     answerSubmitted = answerButtonElm.getAttribute('data-answer-submitted');
-
-    // answers[exActiveNo].splice((exNo-1), 1, 1);
-
-    // if (answerSubmitted !== 'true') { // prevent sending twice
-    //   setAnswerObj("w3exerciseanswers_" + storageBlip + exnames[exActiveNo], answers[exActiveNo].toString(), false);
-    //   answerButtonElm.setAttribute('data-answer-submitted', 'true');
-    // }
-
-    // score_arr = checkCompletedExercises();
-    // if (userLoggedOn) {
-    //   userAddOnePoint();
-    // }
-    // if (exNo >= 3 && 2==17) {
-    //   document.getElementById("answerbutton").style.display = "none";
-    //   document.getElementById("correctnextbtn").style.display = "none";
-    //   document.getElementById("assignmentCorrect").onclick = "";
-    // } else {
     document.getElementById("assignmentCorrect").style.display = "block";
-    // document.getElementById("answerbutton").innerHTML = "Next Exercise";
-    // document.getElementById("answerbutton").addEventListener("click", nextexercise);
-    // document.getElementById("answerbutton").focus();
-    // }
   } else {
     document.getElementById("assignmentNotCorrect").style.display = "block";
     document.getElementById("answerbutton").innerHTML = "Try Again";
@@ -177,100 +114,6 @@ function writinginput(obj, n) {
    }
  }
 }
-
-// function showanswer() {
-//   var txt, correcttxt, cc, from, to, endpos, i, numberofchar, correctpositions = [], correctanswers = [], x, y, z, inputs;
-//   correcttxt = document.getElementById("correctcode").innerHTML;
-//   txt = originalassignmentcode;
-//   if (editable == true) {
-//     document.getElementById("showcorrectanswercontainer").innerHTML = correcttxt;
-//   } else {
-//     if (exsection == "HTML_2"  || exsection == "R" || exsection == "TYPESCRIPT" || exsection == "VUE") {
-//       correcttxt = correcttxt.replace(/&lt;/g, "<");
-//       correcttxt = correcttxt.replace(/&gt;/g, ">");
-//       txt = txt.replace(/&lt;/g, "<");
-//       txt = txt.replace(/&gt;/g, ">");
-//     }
-//     from = 0;
-//     to = 0;
-//     cc = 0;
-//     for (i = 0; i < txt.length; i++) {
-//       c = txt[i]
-//       numberofchar = 0;
-//       if (c == "@") {
-//         if (txt[i + 1] == "(") {
-//           startpos = i + 2;
-//           endpos = txt.indexOf(")", startpos);
-//           n = txt.substring(startpos, endpos)
-//           if (!isNaN(n)) {numberofchar = n;}
-//           if (numberofchar > 0) {
-//              from = i + cc;
-//              to = Number(numberofchar);
-//              cc += Number(numberofchar) - 3 - (numberofchar.length);
-//              correctpositions.push([from,to]);
-//           }
-//         }
-//       }
-//     }
-//     cc = 0;
-//     for (i = 0; i < correctpositions.length; i++) {
-//       x = correctpositions[i][0];
-//       y = correctpositions[i][1];
-//       z = correcttxt.substr(x + cc, y);
-//   //console.log(correcttxt)
-//   //console.log(z)
-//       if (z == "&") {
-//         if (correcttxt.substr(x + cc, 4) == "&lt;") { z = "<"; cc = cc + 3; }
-//         if (correcttxt.substr(x + cc, 4) == "&gt;") { z = ">"; cc = cc + 3; }
-//       }
-//       if (z == "&l") {
-//         if (correcttxt.substr(x + cc, 8) == "&lt;&gt;") { z = "<>"; cc = cc + 6; }
-//       }
-//       if (z == "&lt;?") {
-//         if (correcttxt.substr(x + cc, 8) == "&lt;?php") { z = "<?php"; cc = cc + 3; }
-//       }
-//       if (z == "?&") {
-//         if (correcttxt.substr(x + cc, 5) == "?&gt;") { z = "?>"; cc = cc + 3; }
-//       }
-//       if (z == "=&") {
-//         if (correcttxt.substr(x + cc, 5) == "=&gt;") { z = "=>"; cc = cc + 3; }
-//       }
-//       correctanswers.push(z);
-//     }
-//     document.getElementById("showcorrectanswercontainer").innerHTML = document.getElementById("assignmentcontainer").cloneNode(true).innerHTML;
-//     inputs = document.getElementById("showcorrectanswercontainer").getElementsByClassName("editablesection");
-//     for (i = 0; i < inputs.length; i++) {
-//       inputs[i].value = correctanswers[i];
-//       inputs[i].readOnly = true;
-//     }
-//   }
-//   document.getElementById("assignmentcontainer").style.display = "none";
-//   document.getElementById("showcorrectanswercontainer").style.display = "block";
-//   x = document.getElementsByClassName("showanswerbutton");
-//   for (i = 0; i < x.length; i++) {
-//     x[i].style.display = "none";
-//   }
-//   x = document.getElementsByClassName("hideanswerbutton");
-//   for (i = 0; i < x.length; i++) {
-//     x[i].style.display = "inline";
-//   }
-//   document.getElementById("answerbutton").style.visibility = "hidden";
-// }
-
-// function hideanswer() {
-//   var x, i;
-//   document.getElementById("assignmentcontainer").style.display = "block";
-//   document.getElementById("showcorrectanswercontainer").style.display = "none";
-//   x = document.getElementsByClassName("showanswerbutton");
-//   for (i = 0; i < x.length; i++) {
-//     x[i].style.display = "inline";
-//   }
-//   x = document.getElementsByClassName("hideanswerbutton");
-//   for (i = 0; i < x.length; i++) {
-//     x[i].style.display = "none";
-//   }
-//   document.getElementById("answerbutton").style.visibility = "visible";
-// }
 
 function closeNotCorrect() {
   document.getElementById("answerbutton").removeEventListener("click", closeNotCorrect);
