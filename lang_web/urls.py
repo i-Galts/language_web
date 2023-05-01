@@ -37,5 +37,7 @@ urlpatterns = [
     path('vocab-season-page', views.vocab_season_page),
     path('vocab-appear-page', views.vocab_appear_page),
     path('test-conditionals-1', views.test_conditionals_1),
-    path('test-conditionals-2', views.test_conditionals_2)
+    path('test-conditionals-2', views.test_conditionals_2),
+    path('test-adject-1', views.test_adject_1),
+    path('test-adject-2', views.test_adject_2)
 ]

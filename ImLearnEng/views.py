@@ -44,6 +44,16 @@ def test_conditionals_2(request: HttpRequest) -> HttpResponse:
     return render(request, "test_conditionals_2.html")
 
 
+def test_adject_1(request: HttpRequest) -> HttpResponse:
+    """Launching the test-adjective page number 1."""
+    return render(request, "test_adject_1.html")
+
+
+def test_adject_2(request: HttpRequest) -> HttpResponse:
+    """Launching the test-adjective page number 2."""
+    return render(request, "test_adject_2.html")
+
+
 def dict_main(request: HttpRequest) -> HttpResponse:
     """Launching the dictionary base page."""
     return render(request, "dict_main.html")
@@ -90,16 +100,16 @@ def send_word(request: HttpRequest) -> HttpResponse:
         context = {"user": user_name}
         if len(new_example) == 0:
             context["success"] = False
-            context["comment"] = "Описание должно быть не пустым"
+            context["comment"] = "The example should not be empty!"
         elif len(new_word) == 0:
             context["success"] = False
-            context["comment"] = "Термин должен быть не пустым"
+            context["comment"] = "The word should not be empty!"
         elif len(new_translation) == 0:
             context["success"] = False
-            context["comment"] = "Перевод должен быть не пустым"
+            context["comment"] = "The translation should not be empty!"
         else:
             context["success"] = True
-            context["comment"] = "Ваш термин принят"
+            context["comment"] = "Your word is added"
             words_work.write_word(new_word, new_translation, new_example)
         if context["success"]:
             context["success-title"] = ""
@@ -148,6 +158,4 @@ def grammar_cond_page(request: HttpRequest) -> HttpResponse:
 
 def grammar_adject_page(request: HttpRequest) -> HttpResponse:
     """Launching the grammar page with the "Adkective degrees" topic."""
-    words = words_work.get_words_for_table("./data/grammar_adject.csv")
-    return render(request, "grammar_adject_page.html",
-                  context={"words": words})
+    return render(request, "grammar_adject_page.html")

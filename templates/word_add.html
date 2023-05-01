@@ -1,51 +1,53 @@
 {% extends "base_page.html" %}
 
 {% block page-title %}
-Главная страница
+Добавление новых слов
 {% endblock %}
 
 {% block page-lead %}
-Это страничка проекта про изучение английского языка. <br/>
-Проектная работа в рамках курса "Программирование на Python".
+Здесь можно добавить новые строки в таблицу-словарь.
 {% endblock %}
 
 {% block content %}
+<div style="background-color: rgb(160, 235, 247); border-radius: 2ch;">
 <div class="container-sm px-5 py-5" id="term-form">
     <form method="post">
         <div class="row px-5 py-2">
-            <h3>Ваши контактные данные</h3>
+            <h3 style="font-family: 'Times New Roman', Times, serif;">Leave your contacts below</h3>
         </div>
         <div class="row px-5 py-2">
-            <div class="col-md-6">
-                <label for="name">Ваше имя:</label>
-                <input type="text" class="form-control input-lg" name="name" id="name" placeholder="Иван" value required>
+            <div class="col-md-12">
+                <label for="name" style="font-family: 'Times New Roman', Times, serif; font-size: larger;">Your name:</label>
+                <input type="text" class="form-control input-lg" name="name" id="name" placeholder="Ivan" value required>
             </div>
-            <div class="col-md-6">
-                <label for="email">Ваш контактный email:</label>
+            <div class="col-md-12">
+                <label for="email" style="font-family: 'Times New Roman', Times, serif; font-size: larger;">Your email:</label>
                 <input type="text" class="form-control input-lg" name="email" id="email" placeholder="ivan@ivanov.com" value required>
             </div>
         </div>
+        <br><br><br>
         <div class="row px-5 py-2">
-            <h3>Ваш термин</h3>
+            <h3 style="font-family: 'Times New Roman', Times, serif;">Your word</h3>
         </div>
         <div class="row px-5 py-2">
-            <div class="col-md-4">
-                <label for="new_word">Слово</label>
+            <div class="col-md-6">
+                <label for="new_word" style="font-family: 'Times New Roman', Times, serif; font-size: larger;">Word</label>
                 <input type="text" class="form-control input-lg" name="new_word" id="new_word">
             </div>
-            <div class="col-md-4">
-                <label for="new_translation">Перевод</label>
+            <div class="col-md-6">
+                <label for="new_translation" style="font-family: 'Times New Roman', Times, serif; font-size: larger;">Translation</label>
                 <input type="text" class="form-control input-lg" name="new_translation" id="new_translation">
             </div>
-            <div class="col-md-8">
-                <label for="new_example">Пример использования</label>
+            <div class="col-md-12">
+                <label for="new_example" style="font-family: 'Times New Roman', Times, serif; font-size: larger;">Example</label>
                 <textarea type="text" class="form-control input-lg" name="new_example" id="new_example" aria-describedby="definition_note" rows="3"></textarea>
-                <div id="definition_note" class="form-text">Постарайтесь уложиться в одно, максимум два предложения</div>
+                <div id="definition_note" class="form-text" style="font-family: 'Times New Roman', Times, serif; font-size: larger;">Try to be brief</div>
             </div>
         </div>
         <div class="row px-5 py-2">
-            <button type="submit" class="btn btn-primary" formaction="/send-word">Отправить</button>
+            <button type="submit" class="btn btn-primary" formaction="/send-word">Send</button>
         </div>
     </form>
+</div>
 </div>
 {% endblock %}

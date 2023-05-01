@@ -2,28 +2,50 @@
 
 {% block page-title %}
 {% if success %}
-Термин добавлен
+<span style="color: green;">The word is added</span>
 {% else %}
-Ошибка добавления
+<span style="color: red;">Error while adding</span>
 {% endif %}
 {% endblock %}
 
 {% block page-lead %}{% endblock %}
 
 {% block content %}
+{% if success %}
+<div style="background-color: rgb(179, 243, 197); border-radius: 2ch;">
 <div class="container-sm px-5 py-5" id="term-form-result">
-    <h2 class="pb-2 border-bottom">Результат запроса</h2>
-    <p>Уважаемый пользователь <span class="fst-italic">{{ user }}</span>,<br/>
-        Ваш запрос завершился <span class="fw-bold">{% if success %}успешно{% else %}ошибкой{% endif %}</span>.
+    <h2 class="pb-2 border-bottom">The request result</h2>
+    <p>Dear user <span class="fst-italic">{{ user }}</span>,<br/>
+        Your request was handled <span class="fw-bold">{% if success %}successfully{% else %}with an error{% endif %}</span>.
     </p>
 
-    <h2 class="pb-2 border-bottom">Комментарий</h2>
+    <h2 class="pb-2 border-bottom">Comment</h2>
     <p>{{ comment }}</p>
 
-    <h2 class="pb-2 border-bottom">Что можно сделать?</h2>
+    <h2 class="pb-2 border-bottom">What now?</h2>
     <ul>
-        <li>заполнить <a href="/add-word">форму</a> ещё раз,</li>
-        <li>вернуться на <a href="/">главную</a></li>
+        <li>fill in <a href="/add-word">the form</a> one more time,</li>
+        <li>go back to <a href="/">the main page</a></li>
     </ul>
 </div>
+</div>
+{% else %}
+<div style="background-color: rgb(242, 168, 168); border-radius: 2ch;">
+    <div class="container-sm px-5 py-5" id="term-form-result">
+        <h2 class="pb-2 border-bottom">The request result</h2>
+        <p>Dear user <span class="fst-italic">{{ user }}</span>,<br/>
+            Your request was handled <span class="fw-bold">{% if success %}successfully{% else %}with an error{% endif %}</span>.
+        </p>
+    
+        <h2 class="pb-2 border-bottom">Comment</h2>
+        <p>{{ comment }}</p>
+    
+        <h2 class="pb-2 border-bottom">What now?</h2>
+        <ul>
+            <li>fill in <a href="/add-word">the form</a> one more time,</li>
+            <li>go back to <a href="/">the main page</a></li>
+        </ul>
+    </div>
+    </div>
+{% endif %}
 {% endblock %}

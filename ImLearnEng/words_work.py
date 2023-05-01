@@ -47,10 +47,8 @@ def update_example(upd_id: int, upd_example: str) -> None:
         for line in file:
             if i == upd_id:
                 wlist = line.split(";")
-                print(wlist)
                 wlist[3] = upd_example + "\n"
                 new_line = ";".join(wlist)
-                print(new_line)
             else:
                 new_line = line
             replaced_content.append(new_line)
